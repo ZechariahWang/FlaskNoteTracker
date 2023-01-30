@@ -6,3 +6,9 @@ function deleteNote(noteId) {
       window.location.href = "/";
     });
   }
+
+  function deleteStat() {
+    const element = document.getElementById("stat");
+    element.remove();
+    console.log("Deleted")
+  }

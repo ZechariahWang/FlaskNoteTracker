@@ -2,22 +2,46 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1 align="center">Notes</h1>
+<br />
+<h1 align="center" class="display-4">TEAM SCOUTER</h1>
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
-    <li class="list-group-item>">
+    <!-- <li class="list-group-item>">
         {{note.data}}
         <button type="button" class="close" onClick="deleteNote({{note.id}})">
             <span aria-hidden="true">&times;</span>
         </button>
-    </li>
+    </li> -->
     {% endfor %}
 </ul>
+<br />
+
 <form method="POST">
     <textarea name="note" id="note" class="form-control"></textarea>
     <br />
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
+        <button type="submit" class="btn btn-primary">Find Team</button>
     </div>
+    <br />
 </form>
+<h4 class="h1" id="stat">TEAM STATISTICS: {{name}}</h4>
+<br />
+<h5 class="h6" id="stat">Robot Name: {{robotName}}</h5>
+<h5 class="h6" id="stat">World Skills Rank: {{skillsRank}}</h5>
+<h5 class="h6" id="stat">Grade Level: {{gradeLevel}}</h5>
+<h5 class="h6" id="stat">Location: {{location}}</h5>
+<h5 class="h6" id="stat">Program: {{program}}</h5>
+<table class="table table-bordered" id="stat">
+    <tbody>
+        {% for event in awards %}
+        <tr>
+            <th class="table-info" scope="row" rowspan="{{event['awards']|length}}"><a class="text-dark" href="https://www.robotevents.com/robot-competitions/vex-robotics-competition/{{event['event']['code']}}.html">{{event['event']['name']}}</a></th>
+            {% for award in event['awards'] %}
+            <td>{{award}}</td>
+        </tr>
+        {% endfor %}
+{% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
